@@ -17,6 +17,12 @@ import android.net.wifi.SupplicantState;
 public class serviceDiscovery extends CordovaPlugin {
 	
 	private WifiManager wifiManager;
+	
+	@Override
+    public void initialize(CordovaInterface cordova, CordovaWebView webView) {
+        super.initialize(cordova, webView);
+        this.wifiManager = (WifiManager) cordova.getActivity().getSystemService(Context.WIFI_SERVICE);
+    }
 
 	@Override
     public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) {
@@ -40,7 +46,7 @@ public class serviceDiscovery extends CordovaPlugin {
 			
             return true;
 
-		else if(action.equals("getConnectedSSID")) {
+		} else if(action.equals("getConnectedSSID")) {
             return this.getConnectedSSID(callbackContext);
         } else {
             return false;
@@ -55,12 +61,10 @@ public class serviceDiscovery extends CordovaPlugin {
      *    @return    true if SSID found, false if not.
     */
     private boolean getConnectedSSID(CallbackContext callbackContext){
-        if(!wifiManager.isWifiEnabled()){
+		if(!wifiManager.isWifiEnabled()){
             callbackContext.error("Wifi is disabled");
             return false;
         }
-
-		this.wifiManager = (WifiManager) cordova.getActivity().getSystemService(Context.WIFI_SERVICE);
 		
         WifiInfo info = wifiManager.getConnectionInfo();
 
@@ -77,7 +81,7 @@ public class serviceDiscovery extends CordovaPlugin {
             callbackContext.error("SSID is empty");
             return false;
         }
-
+		
         callbackContext.success(ssid);
         return true;
     }
