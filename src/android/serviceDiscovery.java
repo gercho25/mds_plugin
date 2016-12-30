@@ -13,6 +13,7 @@ import android.net.wifi.WifiEnterpriseConfig;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.SupplicantState;
+import android.content.Context;
 
 public class serviceDiscovery extends CordovaPlugin {
 	
