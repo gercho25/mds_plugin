@@ -18,6 +18,10 @@
 
   <!-- android -->
   <platform name="android">
+  
+	<config-file target="AndroidManifest.xml" parent="/manifest">
+		<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	</config-file>
 
     <config-file target="res/xml/config.xml" parent="/*">
       <feature name="serviceDiscovery">

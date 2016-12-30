@@ -11,7 +11,11 @@
 #import <Cordova/CDVPlugin.h>
 #import <Cordova/CDVInvokedUrlCommand.h>
 
+//Wifi
+#import <Cordova/CDV.h>
+
 @interface serviceDiscovery: CDVPlugin
 - (void)getNetworkServices: (CDVInvokedUrlCommand*)command;
+- (void)getConnectedSSID:(CDVInvokedUrlCommand*)command;
 @end
 
