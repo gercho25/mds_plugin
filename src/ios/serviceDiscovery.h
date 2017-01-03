@@ -13,6 +13,7 @@
 
 //Wifi
 #import <Cordova/CDV.h>
+#import "SystemConfiguration/CaptiveNetwork.h"
 
 @interface serviceDiscovery: CDVPlugin
 - (void)getNetworkServices: (CDVInvokedUrlCommand*)command;
