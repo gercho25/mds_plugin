@@ -179,19 +179,10 @@ NSMutableArray *serviceArr;
 }
 
 - (void)getConnectedSSID:(CDVInvokedUrlCommand*)command {
-    CDVPluginResult *pluginResult = nil;
-    NSDictionary *r = [self fetchSSIDInfo];
+    CDVPluginResult *pluginResult = nil;    
 
-    NSString *ssid = [r objectForKey:(id)kCNNetworkInfoKeySSID]; //@"SSID"
-
-    if (ssid && [ssid length]) {
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:ssid];
-    } else {
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Not available"];
-    }
-
-    [self.commandDelegate sendPluginResult:pluginResult
-                                callbackId:command.callbackId];
+	pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"ABC"];
+	[self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 @end
