@@ -180,7 +180,27 @@ NSMutableArray *serviceArr;
 
 - (void)getConnectedSSID:(CDVInvokedUrlCommand*)command {
     CDVPluginResult *pluginResult = nil;    
+	
+	
+	
+	NSArray *ifs = (__bridge_transfer id)CNCopySupportedInterfaces();
+    NSLog(@"Supported interfaces: %@", ifs);
+    NSDictionary *info = nil;
+    NSDictionary *data = nil;
+    NSString *ifnam = @"";
+    for (ifnam in ifs) {
+        info = (__bridge_transfer id)CNCopyCurrentNetworkInfo((__bridge CFStringRef)ifnam);
+        NSLog(@"%@", [info valueForKey:@"SSID"]);
+        if ([info allKeys] != nil) {
+            data = @{
+                @"SSID" : info[@"SSID"],
+                @"BSSID" : info[@"BSSID"]
+            };
+        }
+    }
 
+    	
+	
 	pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"ABC"];
 	[self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
